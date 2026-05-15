@@ -147,6 +147,16 @@ export class PPSTracker {
   }
 
   /**
+   * Reset a message's tracking state (for stream restart)
+   */
+  resetMessage(sessionID: string, messageID: string): void {
+    const key = this.key(sessionID, messageID);
+    this.windows.delete(key);
+    this.startTimes.delete(key);
+    this.completedMessages.delete(key);
+  }
+
+  /**
    * Subscribe to PPS updates
    */
   onUpdate(listener: () => void): () => void {

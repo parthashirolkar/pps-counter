@@ -18,19 +18,34 @@
 | **Lightning Bolt** | The `⚡` symbol used as the PPS counter icon in the TUI status bar. |
 | **Instantaneous PPS** | Live token rate calculated over a 2-second sliding window. |
 | **Cumulative PPS** | Average token rate since the stream started. |
+| **Sparkline** | Unicode bar chart (`▁▂▃▄▅▆▇█`) showing the last N PPS samples in the status bar to visualize bursts and dips. |
+| **Trend Color** | A single hue applied to the sparkline text element indicating throughput direction: green (steady/improving), yellow (slowing), red (dropping sharply). |
+| **Polling Interval** | A 200ms timer interval that samples instant PPS during active streaming to feed the sparkline buffer. |
+| **Ring Buffer** | Fixed-capacity FIFO array (N=30) storing the most recent PPS snapshots; ~240 bytes per session. |
+| **Stream Start Event** | The `session.next.text.started` event — definitive signal that AI text generation has begun for the current "next" message. |
+| **Stream End Event** | The `session.next.text.ended` event — definitive signal that AI text generation has finished. |
 
 ## Domain Model
 
 ### Streaming Lifecycle
 
-1. **Stream Start** — First `message.part.delta` event arrives for a message
-2. **Streaming** — Deltas arrive continuously; PPS counter updates live
-3. **Stream Complete** — `message.updated` event with `time.completed`; PPS counter lingers briefly then disappears
+1. **Stream Start** — `session.next.text.started` fires; old PPS/sparkline state is cleared, polling begins
+2. **Streaming** — `session.next.text.delta` deltas arrive; PPS counter updates live; polling captures samples into the sparkline ring buffer
+3. **Stream Complete** — `session.next.text.ended` fires; polling stops; final sparkline lingers ~2s then fades to `-- tps`
 
 ### Measurement Windows
 
 - **Instantaneous PPS**: Token rate over the last 2-second sliding window
 - **Cumulative PPS**: Average token rate since stream start
+
+### Sparkline
+
+- **Ring buffer capacity**: 30 samples (capped, no unbounded growth)
+- **Sample rate**: 200ms via `setInterval` while streaming is active
+- **Bar encoding**: 8 unicode levels mapping min→max of the buffer
+- **Trend detection**: Simple linear regression slope over the buffer
+- **Color mapping**: slope ≥ -0.5 → green; slope < -2.0 → red; between → yellow
+- **Memory**: ~240 bytes per session; cleaned up on stream end
 
 ## Key Decisions
 
