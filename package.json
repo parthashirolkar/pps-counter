@@ -1,0 +1,31 @@
+{
+  "name": "pps-counter",
+  "module": "index.ts",
+  "main": "dist/index.js",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./tui": "./index.ts"
+  },
+  "private": true,
+  "scripts": {
+    "build": "bun build index.ts --outdir=dist --target=node --external=@opentui/solid --external=solid-js --external=@opentui/core && printf '{\"type\":\"module\"}\\n' > dist/package.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/ index.ts",
+    "check": "bun run typecheck && bun run lint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@opentui/core": "^0.2.10",
+    "@opentui/keymap": "^0.2.10",
+    "@opentui/solid": "^0.2.10",
+    "@types/bun": "latest",
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^7.0.0"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.14.50",
+    "solid-js": "^1.9.12"
+  }
+}
