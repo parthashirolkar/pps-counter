@@ -1,11 +1,11 @@
 // src/server.ts
 var id = "pps-counter";
-var server = async () => {
+var PPSCounterPlugin = async () => {
   return {};
 };
-var server_default = { id, server };
+var server_default = PPSCounterPlugin;
 export {
-  server,
   id,
-  server_default as default
+  server_default as default,
+  PPSCounterPlugin
 };

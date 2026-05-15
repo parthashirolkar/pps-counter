@@ -6,11 +6,11 @@ Accepted
 
 ## Context
 
-OpenCode's plugin types model runtime plugins as modules with a `server` entrypoint and TUI plugins as modules with a `tui` entrypoint. The current type definitions make those module shapes mutually exclusive.
+OpenCode's documented runtime plugin API loads exported plugin functions from `opencode.json`, while TUI plugins use a separate `tui` entrypoint for slot rendering.
 
 ## Decision
 
-Expose separate package entrypoints: the package root loads the runtime plugin for `opencode.json`, and a `./tui` subpath loads the TUI plugin for status-bar rendering.
+Expose separate package entrypoints: the package root exports the runtime installer-shim plugin function for `opencode.json`, and a `./tui` subpath loads the TUI plugin for status-bar rendering.
 
 ## Consequences
 

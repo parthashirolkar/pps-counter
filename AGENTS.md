@@ -15,7 +15,7 @@
 No test suite, no CI, no pre-commit hooks.
 
 
-- Runtime entrypoint: `index.ts` exports an installer shim for `opencode.json`.
+- Runtime entrypoint: `index.ts` exports an installer-shim plugin function for `opencode.json`.
 - TUI entrypoint: `tui.ts` exports the modern TUI plugin (`api.slots.register`, `api.event.on`). See `docs/adr/` for design decisions.
 
 

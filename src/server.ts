@@ -2,8 +2,8 @@ import type { Plugin } from "@opencode-ai/plugin";
 
 export const id = "pps-counter";
 
-export const server: Plugin = async () => {
+export const PPSCounterPlugin: Plugin = async () => {
   return {};
 };
 
-export default { id, server };
+export default PPSCounterPlugin;
