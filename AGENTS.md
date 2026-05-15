@@ -2,7 +2,7 @@
 
 ## Project identity
 
-`pps-counter` — a hybrid OpenCode plugin whose TUI entrypoint displays `██▂▂▁▁▁▁ 66.3 tok/s N tok/s` in the status bar while a streaming AI response is generating.
+`pps-counter` — a hybrid OpenCode plugin whose TUI entrypoint displays `██▂▂▁▁▁▁ 66.3 tok/s` in the status bar while a streaming AI response is generating.
 
 ## Commands
 

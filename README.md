@@ -1,10 +1,10 @@
 # PPS Counter
 
-A live tokens-per-second (TPS) counter for the OpenCode TUI.
+A live sparkline tokens-per-second (TPS) counter for the OpenCode TUI.
 
 ## What it does
 
-Displays `⚡ N tok/s` in the status bar while the AI is generating a streaming response. Uses a 2-second sliding window to calculate the instantaneous token rate.
+Displays `██▂▂▁▁▁▁ 66.3 tok/s` in the status bar while the AI is generating a streaming response. Uses a 2-second sliding window to calculate the instantaneous token rate.
 
 ## Features
 

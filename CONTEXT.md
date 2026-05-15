@@ -17,7 +17,6 @@
 | **Runtime Plugin** | Standard OpenCode plugin system loaded from `opencode.json` for shared hook/tool behavior across OpenCode surfaces. |
 | **Installer Shim** | Minimal Runtime Plugin whose purpose is to let OpenCode install and load the package without providing user-facing behavior. |
 | **Hybrid Plugin** | An OpenCode plugin package that exposes both a Runtime Plugin entrypoint and a TUI Plugin entrypoint. |
-| **Lightning Bolt** | The `⚡` symbol used as the PPS counter icon in the TUI status bar. |
 | **Instantaneous PPS** | Live token rate calculated over a 2-second sliding window. |
 | **Cumulative PPS** | Average token rate since the stream started. |
 | **Sparkline** | Unicode bar chart (`▁▂▃▄▅▆▇█`) showing the last N PPS samples in the status bar to visualize bursts and dips. |
