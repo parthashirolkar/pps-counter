@@ -14,5 +14,6 @@ Make remote Git installation through `opencode.json` the primary documented inst
 
 ## Consequences
 
+- The built `dist/index.js`, `dist/tui.js`, and `dist/package.json` files are committed so Git installs do not depend on package-manager lifecycle scripts.
 - `tui.json` remains a compatibility and development fallback for OpenCode versions that cannot load the TUI entrypoint from an `opencode.json` package.
 - Desktop support means the runtime plugin can load without custom UI rendering; the live PPS display remains TUI-rendered.

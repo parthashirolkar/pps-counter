@@ -19,7 +19,6 @@
   ],
   "scripts": {
     "build": "bun build index.ts tui.ts --outdir=dist --target=node --external=@opencode-ai/plugin --external=@opencode-ai/plugin/tui --external=@opentui/solid --external=solid-js --external=@opentui/core && printf '{\"type\":\"module\"}\\n' > dist/package.json",
-    "prepare": "bun run build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/ index.ts tui.ts",
     "check": "bun run typecheck && bun run lint"
@@ -36,6 +35,6 @@
   "dependencies": {
     "@opencode-ai/plugin": "^1.14.50",
     "@opentui/solid": "^0.2.10",
-    "solid-js": "^1.9.12"
+    "solid-js": "1.9.12"
   }
 }

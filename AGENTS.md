@@ -46,7 +46,7 @@ If the current OpenCode version cannot activate TUI entrypoints from `opencode.j
 - `<project>/tui.json` (per-project)
 - Or set via `OPENCODE_TUI_CONFIG` env var
 
-The build script auto-creates `dist/package.json` with `"type": "module"` so the dist is always loaded as ESM.
+The build script auto-creates `dist/package.json` with `"type": "module"` so the dist is always loaded as ESM. The three installable dist files are intentionally committed despite `.gitignore`: `dist/index.js`, `dist/tui.js`, and `dist/package.json`.
 
 ## Documentation
 
