@@ -14,7 +14,9 @@
 | **Char/4 Heuristic** | Token estimation method: divide character count by 4 to approximate tokens. |
 | **Delta** | A chunk of streaming text emitted during generation (`message.part.delta` event). |
 | **TUI Plugin** | Modern OpenCode plugin system using slot-based JSX rendering. |
-| **Event-Based Plugin** | Legacy OpenCode plugin system using hook functions. |
+| **Runtime Plugin** | Standard OpenCode plugin system loaded from `opencode.json` for shared hook/tool behavior across OpenCode surfaces. |
+| **Installer Shim** | Minimal Runtime Plugin whose purpose is to let OpenCode install and load the package without providing user-facing behavior. |
+| **Hybrid Plugin** | An OpenCode plugin package that exposes both a Runtime Plugin entrypoint and a TUI Plugin entrypoint. |
 | **Lightning Bolt** | The `⚡` symbol used as the PPS counter icon in the TUI status bar. |
 | **Instantaneous PPS** | Live token rate calculated over a 2-second sliding window. |
 | **Cumulative PPS** | Average token rate since the stream started. |
@@ -53,7 +55,7 @@ See `docs/adr/` for architectural decision records.
 
 ## Constraints
 
-- TUI-only (no web or API support in initial build)
+- Live PPS display is TUI-rendered; Desktop support means runtime loading only, not custom Desktop UI rendering
 - Provider-agnostic (works with any OpenCode-compatible provider)
 - Estimated tokens only (no provider-reported counts)
 - Must not interfere with existing token counter display

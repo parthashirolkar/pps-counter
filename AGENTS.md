@@ -2,7 +2,7 @@
 
 ## Project identity
 
-`pps-counter` — an OpenCode TUI plugin that displays `██▂▂▁▁▁▁ 66.3 tok/s N tok/s` in the status bar while a streaming AI response is generating.
+`pps-counter` — a hybrid OpenCode plugin whose TUI entrypoint displays `██▂▂▁▁▁▁ 66.3 tok/s N tok/s` in the status bar while a streaming AI response is generating.
 
 ## Commands
 
@@ -10,23 +10,34 @@
 |---------|------|
 | `bun run check` | Typecheck + lint (runs both) |
 | `bun run typecheck` | `tsc --noEmit` |
-| `bun run lint` | `eslint src/ index.ts` |
+| `bun run lint` | `eslint src/ index.ts tui.ts` |
 
 No test suite, no CI, no pre-commit hooks.
 
 
-- Single entrypoint: `index.ts`.
-- The plugin uses the **modern TUI plugin API** (`api.slots.register`, `api.event.on`). See `docs/adr/` for design decisions.
+- Runtime entrypoint: `index.ts` exports an installer shim for `opencode.json`.
+- TUI entrypoint: `tui.ts` exports the modern TUI plugin (`api.slots.register`, `api.event.on`). See `docs/adr/` for design decisions.
 
 
 ## Deployment
 
-TUI plugins must be registered in `tui.json` (NOT `opencode.json` or `~/.config/opencode/plugins/`). Those locations are for server plugins only.
+Primary install path is remote Git through `opencode.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["pps-counter@git+https://github.com/parthashirolkar/pps-counter.git"]
+}
+```
+
+The package root is a runtime installer shim. The live counter is rendered by the TUI entrypoint at `pps-counter/tui`.
+
+If the current OpenCode version cannot activate TUI entrypoints from `opencode.json` packages, use `tui.json` as a compatibility fallback:
 
 ```json
 {
   "$schema": "https://opencode.ai/tui.json",
-  "plugin": ["/absolute/path/to/pps-counter/dist/index.js"]
+  "plugin": ["/absolute/path/to/pps-counter/dist/tui.js"]
 }
 ```
 

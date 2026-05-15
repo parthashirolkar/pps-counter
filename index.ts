@@ -1,2 +1,2 @@
-export { id, tui } from "./src/plugin";
-export { default } from "./src/plugin";
+export { id, server } from "./src/server";
+export { default } from "./src/server";
