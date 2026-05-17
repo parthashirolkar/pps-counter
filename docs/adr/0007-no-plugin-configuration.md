@@ -19,11 +19,11 @@ The plugin uses **hardcoded defaults** with no configuration interface:
 
 ## Rationale
 
-The plugin is designed to be zero-configuration. If enabled in `opencode.json`, it simply works. This matches the simplicity of the feature and avoids configuration complexity for a status indicator.
+The plugin is designed to be zero-configuration. If enabled in `tui.json`, it simply works. This matches the simplicity of the feature and avoids configuration complexity for a status indicator.
 
 ## Consequences
 
-- **Positive**: Simple installation — just add to `opencode.json`
+- **Positive**: Simple installation — just add the built TUI entrypoint to `tui.json`
 - **Positive**: No cognitive overhead for users
 - **Positive**: Predictable behavior across all users
 - **Negative**: Power users cannot customize window size or display format
@@ -32,4 +32,4 @@ The plugin is designed to be zero-configuration. If enabled in `opencode.json`, 
 
 - **Settings via `api.kv`**: Rejected — adds complexity for marginal benefit
 - **Keyboard shortcut to toggle**: Rejected — user explicitly said not needed for now
-- **Config via `opencode.json` plugin options**: Rejected — unnecessary for initial build
+- **Config via plugin options**: Rejected — unnecessary for initial build

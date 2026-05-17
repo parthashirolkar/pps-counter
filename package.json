@@ -2,15 +2,13 @@
   "name": "pps-counter",
   "version": "0.1.0",
   "license": "MIT",
-  "module": "index.ts",
-  "main": "dist/index.js",
+  "module": "tui.ts",
+  "main": "dist/tui.js",
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./tui": "./dist/tui.js"
+    ".": "./dist/tui.js"
   },
   "files": [
-    "dist/index.js",
     "dist/tui.js",
     "dist/package.json",
     "README.md",
@@ -18,9 +16,9 @@
     "docs/adr"
   ],
   "scripts": {
-    "build": "bun build index.ts tui.ts --outdir=dist --target=node --external=@opencode-ai/plugin --external=@opencode-ai/plugin/tui --external=@opentui/core && printf '{\"type\":\"module\"}\\n' > dist/package.json",
+    "build": "bun build tui.ts --outdir=dist --target=node --external=@opencode-ai/plugin/tui --external=@opentui/core && printf '{\"type\":\"module\"}\\n' > dist/package.json",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src/ index.ts tui.ts",
+    "lint": "eslint src/ tui.ts",
     "check": "bun run typecheck && bun run lint"
   },
   "devDependencies": {
