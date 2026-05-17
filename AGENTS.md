@@ -25,7 +25,7 @@ Primary install path is `tui.json`:
 ```json
 {
   "$schema": "https://opencode.ai/tui.json",
-  "plugin": ["pps-counter@git+https://github.com/parthashirolkar/pps-counter.git"]
+  "plugin": ["/home/partha/.config/opencode/node_modules/pps-counter/dist/tui.js"]
 }
 ```
 
@@ -33,6 +33,13 @@ Primary install path is `tui.json`:
 - `~/.config/opencode/tui.json` (global, all projects)
 - `<project>/tui.json` (per-project)
 - Or set via `OPENCODE_TUI_CONFIG` env var
+
+Install or update the package from GitHub in OpenCode's global config directory:
+
+```bash
+cd ~/.config/opencode
+bun add "pps-counter@git+https://github.com/parthashirolkar/pps-counter.git"
+```
 
 The build script auto-creates `dist/package.json` with `"type": "module"` so the dist is always loaded as ESM.
 

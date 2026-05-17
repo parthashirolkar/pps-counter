@@ -12,11 +12,12 @@ OpenCode Desktop currently does not expose plugin-rendered UI surfaces for this 
 
 ## Decision
 
-Make `tui.json` the primary supported installation path again. The plugin is referenced from `tui.json` as a Git package, and its package root exports the TUI module.
+Make `tui.json` the primary supported installation path again. The plugin is installed into OpenCode's global config directory from GitHub, and `tui.json` references the installed `dist/tui.js` file.
 
 ## Consequences
 
 - The package no longer needs a runtime installer shim for `opencode.json`.
 - The build produces the TUI entrypoint used by OpenCode's TUI plugin loader.
-- Users can reference the Git package from `tui.json`; local `dist/tui.js` paths remain useful for development.
+- Users can install or update the package from GitHub without cloning this repository manually.
+- Direct Git package references in `tui.json` are avoided because OpenCode's TUI plugin resolver currently fails during Git dependency preparation for this package.
 - The counter implementation remains unchanged: it still uses the modern TUI slot API and streaming events.

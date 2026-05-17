@@ -15,20 +15,27 @@ Displays `██▂▂▁▁▁▁ 66.3 tok/s` in the status bar while the AI is
 
 ## Installation
 
-Add the Git package to `tui.json` or `~/.config/opencode/tui.json`:
+Install the Git package into OpenCode's global config directory:
+
+```bash
+cd ~/.config/opencode
+bun add "pps-counter@git+https://github.com/parthashirolkar/pps-counter.git"
+```
+
+Then add the installed TUI entrypoint to `tui.json` or `~/.config/opencode/tui.json`:
 
 ```json
 {
   "$schema": "https://opencode.ai/tui.json",
   "plugin": [
-    "pps-counter@git+https://github.com/parthashirolkar/pps-counter.git"
+    "/home/partha/.config/opencode/node_modules/pps-counter/dist/tui.js"
   ]
 }
 ```
 
 Restart OpenCode after updating the TUI config.
 
-For local development, build the plugin and point `tui.json` at the built file instead:
+For local development, build the plugin and point `tui.json` at this repository's built file instead:
 
 ```bash
 bun run build
